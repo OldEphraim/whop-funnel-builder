@@ -15,7 +15,10 @@ export default {
           'whop-text': '#ffffff',
           'whop-text-muted': '#a3a3a3',
           'whop-border': '#333333'
-        }
+        },
+        screens: {
+          'xs': '475px',
+        },
       },
     },
     plugins: [],

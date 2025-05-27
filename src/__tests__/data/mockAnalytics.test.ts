@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mockFunnelAnalytics, mockABTests } from '../../data/mockAnalytics';
+import { mockFunnelAnalytics, mockABTests } from '../../data/mockData';
 import { FunnelAnalytics, ABTestConfig } from '../../types/analytics';
 
 describe('Mock Analytics Data', () => {

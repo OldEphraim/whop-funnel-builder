@@ -50,7 +50,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
   const renderOverview = () => (
     <div className="space-y-6">
       {/* Key Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-4">
           <div className="text-whop-text-muted text-sm">Total Users</div>
           <div className="text-2xl font-bold text-whop-text">{analytics.totalUsers.toLocaleString()}</div>
@@ -79,7 +79,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
       {/* Quick Insights */}
       <Card className="p-6">
         <h3 className="text-lg font-semibold text-whop-text mb-4">Quick Insights</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4">
           <div className="text-center">
             <div className="text-3xl font-bold text-whop-blue">{formatPercentage(analytics.conversionFlow[0]?.conversionRate || 0)}</div>
             <div className="text-whop-text-muted">Free to Paid Conversion</div>
@@ -102,8 +102,8 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
       <Card className="p-6">
         <h3 className="text-lg font-semibold text-whop-text mb-6">Conversion Funnel</h3>
         
-        {/* Visual Funnel */}
-        <div className="space-y-4">
+        {/* Visual Funnel - FIXED: Reduced bar height */}
+        <div className="space-y-6"> {/* Increased spacing */}
           {analytics.tierMetrics.map((tier, index) => {
             const conversionRate = index === 0 ? 100 : analytics.conversionFlow[index - 1]?.conversionRate || 0;
             const barWidth = (tier.totalUsers / analytics.tierMetrics[0].totalUsers) * 100;
@@ -116,16 +116,17 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
                 </div>
                 
                 <div className="flex-1 relative">
-                  <div className="bg-whop-gray h-12 rounded-lg overflow-hidden">
+                  {/* FIXED: Reduced height from h-12 to h-8 */}
+                  <div className="bg-whop-gray h-8 rounded-lg overflow-hidden">
                     <div 
                       className="bg-whop-blue h-full flex items-center px-4 transition-all duration-500"
                       style={{ width: `${barWidth}%` }}
                     >
-                      <span className="text-white font-medium">{tier.totalUsers.toLocaleString()} users</span>
+                      <span className="text-white font-medium text-sm">{tier.totalUsers.toLocaleString()} users</span>
                     </div>
                   </div>
                   {index > 0 && (
-                    <div className="absolute -top-6 left-0 text-sm text-whop-text-muted">
+                    <div className="absolute -top-5 left-0 text-sm text-whop-text-muted">
                       {formatPercentage(conversionRate)} conversion
                     </div>
                   )}
@@ -142,7 +143,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
       </Card>
 
       {/* Tier Details */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4">
         {analytics.tierMetrics.map((tier) => (
           <Card key={tier.tierId} className="p-4">
             <h4 className="font-semibold text-whop-text mb-3">{tier.tierName}</h4>
@@ -312,16 +313,17 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
             </div>
           </div>
           
-          <div className="border border-green-500 bg-green-50 rounded-lg p-4">
-            <h5 className="font-medium text-whop-text mb-2">Variant: Mid-Tier Added</h5>
+          {/* FIXED: Better contrast for winner variant */}
+          <div className="border-2 border-green-500 bg-green-500/10 rounded-lg p-4">
+            <h5 className="font-medium text-green-700 mb-2">✅ Winner: Mid-Tier Added</h5>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-whop-text-muted">Conversion Rate</span>
-                <span className="text-green-600 font-medium">26.8% (+3.2%)</span>
+                <span className="text-green-700 font-medium">26.8% (+3.2%)</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-whop-text-muted">Revenue</span>
-                <span className="text-green-600 font-medium">$16,341 (+16.1%)</span>
+                <span className="text-green-700 font-medium">$16,341 (+16.1%)</span>
               </div>
             </div>
           </div>

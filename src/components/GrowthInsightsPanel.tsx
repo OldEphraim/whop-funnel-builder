@@ -47,7 +47,7 @@ export const GrowthInsightsPanel: React.FC<GrowthInsightsPanelProps> = ({
     <Card className={`p-6 ${className}`}>
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-whop-text">Growth Opportunities</h3>
-        <span className="text-sm text-whop-text-muted">{priorityInsights.length} high-impact insights</span>
+        <span className="text-sm text-whop-text-muted">{priorityInsights.length} high-impact insight{priorityInsights.length !== 1 ? 's' : ''}</span>
       </div>
 
       <div className="space-y-4">

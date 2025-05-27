@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FunnelDashboard } from '../../components/FunnelDashboard';
-import { mockFunnels } from '../../data/mockFunnels';
+import { mockFunnels } from '../../data/mockData';
 import { describe, test, expect, beforeEach, vi } from 'vitest';
 
 describe('FunnelDashboard Component', () => {

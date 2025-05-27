@@ -30,15 +30,15 @@ export const FunnelPerformanceCard: React.FC<FunnelPerformanceCardProps> = ({
   const highImpactInsights = analytics.insights.filter(i => i.impact === 'high').length;
 
   return (
-    <Card className="p-6">
+    <Card className="p-6" hover onClick={() => onViewAnalytics(analytics.funnelId)}>
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="font-semibold text-whop-text">{analytics.funnelName}</h3>
           <p className="text-whop-text-muted text-sm">{analytics.totalUsers.toLocaleString()} total users</p>
         </div>
-        <Button variant="ghost" size="sm" onClick={() => onViewAnalytics(analytics.funnelId)}>
+        <div className="text-whop-blue text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
           View Analytics →
-        </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-3 gap-4 mb-4">

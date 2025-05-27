@@ -5,8 +5,7 @@ import { FunnelDashboard } from './components/FunnelDashboard';
 import { FunnelWizard } from './components/FunnelWizard';
 import { AnalyticsDashboard } from './components/AnalyticsDashboard';
 import { Button } from './components/ui/Button';
-import { mockFunnels } from './data/mockFunnels';
-import { mockFunnelAnalytics } from './data/mockAnalytics';
+import { mockFunnels, mockFunnelAnalytics } from './data/mockData';
 import { Funnel } from './types/funnel';
 import { FunnelAnalytics } from './types/analytics';
 

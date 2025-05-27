@@ -1,7 +1,7 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FunnelPerformanceCard } from '../../components/FunnelPerformanceCard';
-import { mockFunnelAnalytics } from '../../data/mockAnalytics';
+import { mockFunnelAnalytics } from '../../data/mockData';
 
 describe('FunnelPerformanceCard Component', () => {
   const mockOnViewAnalytics = vi.fn();

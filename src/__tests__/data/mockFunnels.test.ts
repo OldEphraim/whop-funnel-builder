@@ -1,6 +1,6 @@
-import { mockFunnels } from '../../data/mockFunnels';
+import { mockFunnels } from '../../data/mockData';
 import { Funnel } from '../../types/funnel';
-import { describe, test, expect} from 'vitest';
+import { describe, test, expect } from 'vitest';
 
 describe('Mock Funnels Data', () => {
   test('should have 2 sample funnels', () => {
