@@ -47,6 +47,11 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
     }
   };
 
+  // NEW: Handler for New Test button
+  const handleNewTest = () => {
+    alert('Users will be able to design A/B tests in the full version of this feature.');
+  };
+
   const renderOverview = () => (
     <div className="space-y-6">
       {/* Key Metrics Cards */}
@@ -234,59 +239,76 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
     </div>
   );
 
-  const renderInsights = () => (
-    <div className="space-y-4">
-      {analytics.insights.map((insight) => (
-        <Card key={insight.id} className={`p-6 border-l-4 ${getInsightColor(insight.type)}`}>
-          <div className="flex items-start justify-between">
-            <div className="flex items-start space-x-3">
-              <span className="text-2xl">{getInsightIcon(insight.type)}</span>
-              <div>
-                <h4 className="font-semibold text-whop-text mb-2">{insight.title}</h4>
-                <p className="text-whop-text-muted mb-3">{insight.description}</p>
-                
-                {insight.recommendation && (
-                  <div className="bg-whop-gray p-3 rounded-lg">
-                    <div className="text-sm font-medium text-whop-text mb-1">Recommendation:</div>
-                    <div className="text-sm text-whop-text-muted">{insight.recommendation}</div>
-                  </div>
-                )}
-                
-                {insight.estimatedImpact && (
-                  <div className="mt-3 flex space-x-6 text-sm">
-                    <div>
-                      <span className="text-whop-text-muted">Revenue Impact: </span>
-                      <span className="text-green-400 font-medium">+{formatCurrency(insight.estimatedImpact.revenue)}</span>
+  // UPDATED: Added empty state handling
+  const renderInsights = () => {
+    // Check if there are no insights
+    if (!analytics.insights || analytics.insights.length === 0) {
+      return (
+        <Card className="p-8 text-center">
+          <div className="text-4xl mb-4">🔍</div>
+          <h3 className="text-lg font-medium text-whop-text mb-2">No Insights Available</h3>
+          <p className="text-whop-text-muted">
+            There are no insights associated with this funnel yet. Insights will appear as your funnel gathers more data and performance patterns emerge.
+          </p>
+        </Card>
+      );
+    }
+
+    return (
+      <div className="space-y-4">
+        {analytics.insights.map((insight) => (
+          <Card key={insight.id} className={`p-6 border-l-4 ${getInsightColor(insight.type)}`}>
+            <div className="flex items-start justify-between">
+              <div className="flex items-start space-x-3">
+                <span className="text-2xl">{getInsightIcon(insight.type)}</span>
+                <div>
+                  <h4 className="font-semibold text-whop-text mb-2">{insight.title}</h4>
+                  <p className="text-whop-text-muted mb-3">{insight.description}</p>
+                  
+                  {insight.recommendation && (
+                    <div className="bg-whop-gray p-3 rounded-lg">
+                      <div className="text-sm font-medium text-whop-text mb-1">Recommendation:</div>
+                      <div className="text-sm text-whop-text-muted">{insight.recommendation}</div>
                     </div>
-                    <div>
-                      <span className="text-whop-text-muted">User Impact: </span>
-                      <span className="text-whop-blue font-medium">+{insight.estimatedImpact.users}</span>
+                  )}
+                  
+                  {insight.estimatedImpact && (
+                    <div className="mt-3 flex space-x-6 text-sm">
+                      <div>
+                        <span className="text-whop-text-muted">Revenue Impact: </span>
+                        <span className="text-green-400 font-medium">+{formatCurrency(insight.estimatedImpact.revenue)}</span>
+                      </div>
+                      <div>
+                        <span className="text-whop-text-muted">User Impact: </span>
+                        <span className="text-whop-blue font-medium">+{insight.estimatedImpact.users}</span>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
+              </div>
+              
+              <div className="text-right">
+                <span className={`px-2 py-1 text-xs rounded-full ${
+                  insight.impact === 'high' ? 'bg-red-100 text-red-800' :
+                  insight.impact === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                  'bg-green-100 text-green-800'
+                }`}>
+                  {insight.impact.toUpperCase()} IMPACT
+                </span>
               </div>
             </div>
-            
-            <div className="text-right">
-              <span className={`px-2 py-1 text-xs rounded-full ${
-                insight.impact === 'high' ? 'bg-red-100 text-red-800' :
-                insight.impact === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                'bg-green-100 text-green-800'
-              }`}>
-                {insight.impact.toUpperCase()} IMPACT
-              </span>
-            </div>
-          </div>
-        </Card>
-      ))}
-    </div>
-  );
+          </Card>
+        ))}
+      </div>
+    );
+  };
 
   const renderABTests = () => (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-whop-text">A/B Tests</h3>
-        <Button variant="secondary">New Test</Button>
+        {/* UPDATED: Added onClick handler */}
+        <Button variant="secondary" onClick={handleNewTest}>New Test</Button>
       </div>
       
       <Card className="p-6">

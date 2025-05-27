@@ -20,9 +20,6 @@ describe('App Integration Tests - Phase 3 Analytics', () => {
     render(<App />);
     
     expect(screen.getByText('Growth Opportunities')).toBeInTheDocument();
-    // FIXED: Remove the regex test since it's not matching what's actually rendered
-    // The insights count might be displayed differently or not at all
-    // You may need to check what's actually rendered for insights count
   });
 
   test('displays funnel performance cards', () => {
@@ -90,9 +87,6 @@ describe('App Integration Tests - Phase 3 Analytics', () => {
     
     // FIXED: Handle multiple elements for revenue
     expect(screen.getAllByText('$28,137')).toHaveLength(2); // Appears in both performance card and table
-    
-    // FIXED: Update insights count - check what's actually rendered or remove if not displayed
-    // expect(screen.getByText('2')).toBeInTheDocument(); // Comment out if this count isn't displayed
   });
 
   test('growth insights panel shows actionable insights', async () => {
@@ -106,16 +100,14 @@ describe('App Integration Tests - Phase 3 Analytics', () => {
     await user.click(screen.getByText('Insights'));
     
     expect(screen.getByText('High Free-to-Paid Conversion Rate')).toBeInTheDocument();
-    // FIXED: Use actual rendered text
-    expect(screen.getByText('Tier Pricing Gap')).toBeInTheDocument(); // CHANGED from "Premium to VIP Conversion Bottleneck"
-    
-    // FIXED: Use actual impact values from rendered HTML
-    expect(screen.getAllByText('Revenue Impact:')).toHaveLength(2); // 2 insights have revenue impact
-    expect(screen.getByText('+$4,220')).toBeInTheDocument(); // CHANGED from +$4,200
-    expect(screen.getByText('+$2,813')).toBeInTheDocument(); // Second insight revenue impact
-    expect(screen.getAllByText('User Impact:')).toHaveLength(2); // 2 insights have user impact  
-    expect(screen.getByText('+149')).toBeInTheDocument(); // CHANGED from +150
-    expect(screen.getByText('+62')).toBeInTheDocument(); // Second insight user impact
+    expect(screen.getByText('Tier Pricing Gap')).toBeInTheDocument(); 
+
+    expect(screen.getAllByText('Revenue Impact:')).toHaveLength(2); 
+    expect(screen.getByText('+$4,220')).toBeInTheDocument(); 
+    expect(screen.getByText('+$2,813')).toBeInTheDocument();
+    expect(screen.getAllByText('User Impact:')).toHaveLength(2);
+    expect(screen.getByText('+149')).toBeInTheDocument();
+    expect(screen.getByText('+62')).toBeInTheDocument();
   });
 
   test('creating new funnel also creates analytics data', async () => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card } from './ui/Card';
-import { Button } from './ui/Button';
 import { GrowthInsight } from '../types/analytics';
 
 interface GrowthInsightsPanelProps {
@@ -75,10 +74,6 @@ export const GrowthInsightsPanel: React.FC<GrowthInsightsPanelProps> = ({
                   )}
                 </div>
               </div>
-              
-              <Button variant="ghost" size="sm" className="text-xs">
-                View
-              </Button>
             </div>
           </div>
         ))}
