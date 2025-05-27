@@ -1,6 +1,5 @@
 import { describe, test, expect, beforeEach, vi } from 'vitest';
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
@@ -28,9 +27,9 @@ describe('App Integration Tests', () => {
   test('shows mock funnel data on initial load', () => {
     render(<App />);
     
-    expect(screen.getByText('Trading Mastery Program')).toBeInTheDocument();
-    expect(screen.getByText('Fitness Transformation')).toBeInTheDocument();
-  });
+    expect(screen.getByRole('heading', { name: 'Trading Mastery Program' })).toBeInTheDocument();
+    expect(screen.getAllByText('Fitness Transformation')).toHaveLength(2);
+});
 
   test('navigates to create funnel wizard', async () => {
     const user = userEvent.setup();
@@ -60,7 +59,7 @@ describe('App Integration Tests', () => {
     
     // Should return to dashboard and show new funnel
     await waitFor(() => {
-      expect(screen.getByText('Integration Test Funnel')).toBeInTheDocument();
+      expect(screen.getAllByText('Integration Test Funnel')[0]).toBeInTheDocument();
     });
   });
 
@@ -81,8 +80,8 @@ describe('App Integration Tests', () => {
     render(<App />);
     
     // Initially should have 2 funnels
-    expect(screen.getByText('Trading Mastery Program')).toBeInTheDocument();
-    expect(screen.getByText('Fitness Transformation')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Trading Mastery Program' })).toBeInTheDocument();
+    expect(screen.getAllByText('Fitness Transformation')).toHaveLength(2);
     
     // Delete first funnel
     const deleteButtons = screen.getAllByText('Delete');
@@ -107,6 +106,6 @@ describe('App Integration Tests', () => {
     
     // Go back to funnels
     await user.click(screen.getByText('Funnels'));
-    expect(screen.getByText('Trading Mastery Program')).toBeInTheDocument();
-  });
+    expect(screen.getByRole('heading', { name: 'Trading Mastery Program' })).toBeInTheDocument();
+});
 });

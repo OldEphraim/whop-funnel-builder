@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FunnelTable } from '../../components/FunnelTable';
 import { mockFunnels } from '../../data/mockFunnels';
@@ -23,7 +22,7 @@ describe('FunnelTable Component', () => {
 
     // Check if funnel names are displayed
     expect(screen.getByText('Trading Mastery Program')).toBeInTheDocument();
-    expect(screen.getByText('Fitness Transformation')).toBeInTheDocument();
+    expect(screen.getAllByText('Fitness Transformation')).toHaveLength(1);
   });
 
   test('displays status badges correctly', () => {

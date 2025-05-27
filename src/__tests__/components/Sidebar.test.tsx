@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Sidebar } from '../../components/Sidebar';
 import { describe, test, expect, beforeEach, vi } from 'vitest';

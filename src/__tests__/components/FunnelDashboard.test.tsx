@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FunnelDashboard } from '../../components/FunnelDashboard';
 import { mockFunnels } from '../../data/mockFunnels';
@@ -20,6 +19,8 @@ describe('FunnelDashboard Component', () => {
         onCreateFunnel={mockOnCreate}
         onEditFunnel={mockOnEdit}
         onDeleteFunnel={mockOnDelete}
+        analytics={[]}
+        onViewAnalytics={vi.fn()}
       />
     );
 
@@ -34,6 +35,8 @@ describe('FunnelDashboard Component', () => {
         onCreateFunnel={mockOnCreate}
         onEditFunnel={mockOnEdit}
         onDeleteFunnel={mockOnDelete}
+        analytics={[]}
+        onViewAnalytics={vi.fn()}
       />
     );
 
@@ -48,6 +51,8 @@ describe('FunnelDashboard Component', () => {
         onCreateFunnel={mockOnCreate}
         onEditFunnel={mockOnEdit}
         onDeleteFunnel={mockOnDelete}
+        analytics={[]}
+        onViewAnalytics={vi.fn()}
       />
     );
 
