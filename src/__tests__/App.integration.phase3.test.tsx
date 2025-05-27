@@ -57,9 +57,6 @@ describe('App Integration Tests - Phase 3 Analytics', () => {
     
     await user.click(screen.getByText('Insights'));
     expect(screen.getByText('High Free-to-Paid Conversion Rate')).toBeInTheDocument();
-    
-    await user.click(screen.getByText('A/B Tests'));
-    expect(screen.getByText('Tier Pricing Optimization')).toBeInTheDocument();
   });
 
   test('back navigation from analytics works correctly', async () => {

@@ -1,5 +1,5 @@
 import { Funnel } from '../types/funnel';
-import { FunnelAnalytics, ABTestConfig } from '../types/analytics';
+import { FunnelAnalytics } from '../types/analytics';
 
 // Raw funnel definitions - this is our single source of truth
 const rawFunnelData = [
@@ -286,77 +286,6 @@ export const mockFunnelAnalytics: FunnelAnalytics[] = rawFunnelData.map(funnel =
     insights
   };
 });
-
-// A/B Tests (separate from funnel data)
-export const mockABTests: ABTestConfig[] = [
-  {
-    id: 'test_1',
-    name: 'Tier Pricing Optimization',
-    status: 'running',
-    variants: [
-      {
-        id: 'control',
-        name: 'Current Pricing',
-        description: 'Free, $49, $199',
-        traffic: 50,
-        metrics: {
-          users: 623,
-          conversions: 147,
-          conversionRate: 23.6,
-          revenue: 14068
-        }
-      },
-      {
-        id: 'variant_a',
-        name: 'Mid-Tier Added',
-        description: 'Free, $49, $99, $199',
-        traffic: 50,
-        metrics: {
-          users: 624,
-          conversions: 167,
-          conversionRate: 26.8,
-          revenue: 16341
-        }
-      }
-    ],
-    startDate: '2024-05-15',
-    confidence: 85.3,
-    winner: 'variant_a'
-  },
-  {
-    id: 'test_2',
-    name: 'Free Tier Value Proposition',
-    status: 'draft',
-    variants: [
-      {
-        id: 'control',
-        name: 'Current Free Tier',
-        description: 'Basic chat access',
-        traffic: 50,
-        metrics: {
-          users: 0,
-          conversions: 0,
-          conversionRate: 0,
-          revenue: 0
-        }
-      },
-      {
-        id: 'variant_b',
-        name: 'Enhanced Free Tier',
-        description: 'Chat + Weekly newsletter + Basic signals',
-        traffic: 50,
-        metrics: {
-          users: 0,
-          conversions: 0,
-          conversionRate: 0,
-          revenue: 0
-        }
-      }
-    ],
-    startDate: '2024-06-01',
-    confidence: 0
-  }
-];
 
 // Export everything from a single place
 export * from '../types/funnel';

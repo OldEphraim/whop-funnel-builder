@@ -14,7 +14,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
   analytics,
   onBack
 }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'funnel' | 'revenue' | 'insights' | 'tests'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'funnel' | 'revenue' | 'insights'>('overview');
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -45,11 +45,6 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
       case 'success': return 'border-green-500 bg-green-50';
       default: return 'border-gray-500 bg-gray-50';
     }
-  };
-
-  // NEW: Handler for New Test button
-  const handleNewTest = () => {
-    alert('Users will be able to design A/B tests in the full version of this feature.');
   };
 
   const renderOverview = () => (
@@ -303,68 +298,11 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
     );
   };
 
-  const renderABTests = () => (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-whop-text">A/B Tests</h3>
-        {/* UPDATED: Added onClick handler */}
-        <Button variant="secondary" onClick={handleNewTest}>New Test</Button>
-      </div>
-      
-      <Card className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h4 className="font-semibold text-whop-text">Tier Pricing Optimization</h4>
-            <p className="text-whop-text-muted text-sm">Testing mid-tier addition impact</p>
-          </div>
-          <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">RUNNING</span>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="border border-whop-border rounded-lg p-4">
-            <h5 className="font-medium text-whop-text mb-2">Control: Current Pricing</h5>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-whop-text-muted">Conversion Rate</span>
-                <span className="text-whop-text">23.6%</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-whop-text-muted">Revenue</span>
-                <span className="text-whop-text">$14,068</span>
-              </div>
-            </div>
-          </div>
-          
-          {/* FIXED: Better contrast for winner variant */}
-          <div className="border-2 border-green-500 bg-green-500/10 rounded-lg p-4">
-            <h5 className="font-medium text-green-700 mb-2">✅ Winner: Mid-Tier Added</h5>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-whop-text-muted">Conversion Rate</span>
-                <span className="text-green-700 font-medium">26.8% (+3.2%)</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-whop-text-muted">Revenue</span>
-                <span className="text-green-700 font-medium">$16,341 (+16.1%)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="mt-4 text-center">
-          <div className="text-lg font-semibold text-whop-text">85.3% Confidence</div>
-          <div className="text-whop-text-muted text-sm">Variant A is likely the winner</div>
-        </div>
-      </Card>
-    </div>
-  );
-
   const tabs = [
     { id: 'overview', label: 'Overview', icon: '📊' },
     { id: 'funnel', label: 'Funnel Flow', icon: '🔄' },
     { id: 'revenue', label: 'Revenue', icon: '💰' },
-    { id: 'insights', label: 'Insights', icon: '💡' },
-    { id: 'tests', label: 'A/B Tests', icon: '🧪' }
+    { id: 'insights', label: 'Insights', icon: '💡' }
   ];
 
   return (
@@ -404,7 +342,6 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
           {activeTab === 'funnel' && renderFunnelFlow()}
           {activeTab === 'revenue' && renderRevenue()}
           {activeTab === 'insights' && renderInsights()}
-          {activeTab === 'tests' && renderABTests()}
         </div>
       </Card>
     </div>

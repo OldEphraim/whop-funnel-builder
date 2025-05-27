@@ -20,7 +20,6 @@ This prototype demonstrates a unified funnel builder that enables creators to de
 
 - **Multi-tier funnel creation** with seamless tier transitions
 - **Advanced analytics dashboard** with growth insights
-- **A/B testing capabilities** for optimization
 - **Revenue attribution** across funnel stages
 - **Actionable recommendations** powered by performance data
 
@@ -36,11 +35,6 @@ This prototype demonstrates a unified funnel builder that enables creators to de
 - **Funnel Flow Visualization**: Visual representation of customer progression through tiers
 - **Revenue Attribution**: Detailed breakdown of revenue by tier and customer segment
 - **Conversion Rate Tracking**: Monitor performance at each funnel stage
-
-### 🧪 Built-in A/B Testing
-- **Pricing optimization**: Test different tier structures and price points
-- **Funnel flow experiments**: Compare different customer journey designs
-- **Revenue impact measurement**: Real-time comparison of test variants
 
 ### 🎨 Intuitive Funnel Builder
 - **3-step creation wizard**: Streamlined funnel setup process

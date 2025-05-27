@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
-import { mockFunnelAnalytics, mockABTests } from '../../data/mockData';
-import { FunnelAnalytics, ABTestConfig } from '../../types/analytics';
+import { mockFunnelAnalytics } from '../../data/mockData';
+import { FunnelAnalytics } from '../../types/analytics';
 
 describe('Mock Analytics Data', () => {
   test('should have valid funnel analytics structure', () => {
@@ -88,23 +88,6 @@ describe('Mock Analytics Data', () => {
       expect(['opportunity', 'warning', 'success']).toContain(insight.type);
       expect(['high', 'medium', 'low']).toContain(insight.impact);
       expect(typeof insight.actionable).toBe('boolean');
-    });
-  });
-
-  test('should have valid A/B test data', () => {
-    expect(mockABTests).toHaveLength(2);
-    
-    mockABTests.forEach((test: ABTestConfig) => {
-      expect(test).toHaveProperty('id');
-      expect(test).toHaveProperty('name');
-      expect(test).toHaveProperty('status');
-      expect(test).toHaveProperty('variants');
-      expect(test).toHaveProperty('confidence');
-      
-      expect(['draft', 'running', 'completed']).toContain(test.status);
-      expect(test.variants).toBeInstanceOf(Array);
-      expect(test.variants.length).toBeGreaterThanOrEqual(2);
-      expect(typeof test.confidence).toBe('number');
     });
   });
 });

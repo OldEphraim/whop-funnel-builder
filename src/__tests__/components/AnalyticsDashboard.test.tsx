@@ -38,7 +38,6 @@ describe('AnalyticsDashboard Component', () => {
     expect(screen.getByText('Funnel Flow')).toBeInTheDocument();
     expect(screen.getByText('Revenue')).toBeInTheDocument();
     expect(screen.getByText('Insights')).toBeInTheDocument();
-    expect(screen.getByText('A/B Tests')).toBeInTheDocument();
   });
 
   test('displays overview tab by default with key metrics', () => {
@@ -108,23 +107,6 @@ describe('AnalyticsDashboard Component', () => {
     expect(screen.getByText('High Free-to-Paid Conversion Rate')).toBeInTheDocument();
     expect(screen.getByText('Tier Pricing Gap')).toBeInTheDocument(); // CHANGED from "Premium to VIP Conversion Bottleneck"
     expect(screen.getByText('Excellent Premium Retention')).toBeInTheDocument(); // CHANGED from "Excellent VIP Retention"
-  });
-
-  test('switches to A/B tests tab when clicked', async () => {
-    const user = userEvent.setup();
-    render(
-      <AnalyticsDashboard
-        funnelId={analytics.funnelId}
-        analytics={analytics}
-        onBack={mockOnBack}
-      />
-    );
-
-    await user.click(screen.getByText('A/B Tests'));
-    
-    expect(screen.getByText('Tier Pricing Optimization')).toBeInTheDocument();
-    expect(screen.getByText('RUNNING')).toBeInTheDocument();
-    expect(screen.getByText('85.3% Confidence')).toBeInTheDocument();
   });
 
   test('calls onBack when back button is clicked', () => {

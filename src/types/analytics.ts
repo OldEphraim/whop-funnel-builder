@@ -69,27 +69,3 @@ export interface FunnelAnalytics {
       conversionRate: number;
     };
   }
-  
-  export interface ABTestConfig {
-    id: string;
-    name: string;
-    status: 'draft' | 'running' | 'completed';
-    variants: ABTestVariant[];
-    startDate: string;
-    endDate?: string;
-    confidence: number;
-    winner?: string;
-  }
-  
-  export interface ABTestVariant {
-    id: string;
-    name: string;
-    description: string;
-    traffic: number; // percentage
-    metrics: {
-      users: number;
-      conversions: number;
-      conversionRate: number;
-      revenue: number;
-    };
-  }
